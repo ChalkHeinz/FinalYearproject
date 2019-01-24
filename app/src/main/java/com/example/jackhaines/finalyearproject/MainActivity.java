@@ -102,6 +102,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             //Start new activity
             Intent signInIntent = new Intent(MainActivity.this, CameraActivity.class);
             MainActivity.this.startActivity(signInIntent);
+
+
         } else {
             //todo sort out update UI code 1
             /* mStatusTextView.setText(R.string.signed_out);
