@@ -21,7 +21,7 @@ import java.util.Date;
 
 public class CameraActivity extends AppCompatActivity {
 
-    private Button btnCapture;
+    private Button btnCapture, btnUpload;
     private ImageView imgCapture;
     private static final int Image_Capture_Code = 1;
 
@@ -30,6 +30,7 @@ public class CameraActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_camera);
         btnCapture =(Button)findViewById(R.id.button);
+        btnUpload = (Button)findViewById(R.id.button2);
         imgCapture = (ImageView) findViewById(R.id.imageView);
         btnCapture.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -39,6 +40,15 @@ public class CameraActivity extends AppCompatActivity {
             }
         });
     }
+
+    public void OnSubmit(){
+        String test = "test";
+        String type = "submit";
+
+        BackendService backendService = new BackendService(this);
+        backendService.execute(type, test);
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == Image_Capture_Code) {
