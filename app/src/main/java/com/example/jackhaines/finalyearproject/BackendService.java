@@ -14,6 +14,7 @@ import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.URLConnection;
 import java.net.URLEncoder;
 
 public class BackendService extends AsyncTask<String, Void, String> {
@@ -41,9 +42,8 @@ public class BackendService extends AsyncTask<String, Void, String> {
                 OutputStream outputStream = httpURLConnection.getOutputStream();
                 BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream, "UTF-8"));
 
-                //Have the data trying to send here
-                String post_data = URLEncoder.encode("test", "UTF-8")+"="+ URLEncoder.encode(data, "UTF-8");
-
+                //Encoded the data here
+                String post_data = URLEncoder.encode("test", "UTF-8")+ "=" + URLEncoder.encode(data, "UTF-8");
 
                 bufferedWriter.write(post_data);
                 bufferedWriter.flush();
@@ -92,3 +92,4 @@ public class BackendService extends AsyncTask<String, Void, String> {
         super.onProgressUpdate(values);
     }
 }
+
