@@ -19,7 +19,7 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class CameraActivity extends AppCompatActivity {
+public class CameraActivity extends AppCompatActivity  {
 
     private Button btnCapture, btnUpload;
     private ImageView imgCapture;
@@ -32,22 +32,30 @@ public class CameraActivity extends AppCompatActivity {
         btnCapture =(Button)findViewById(R.id.button);
         btnUpload = (Button)findViewById(R.id.button2);
         imgCapture = (ImageView) findViewById(R.id.imageView);
-        btnCapture.setOnClickListener(new View.OnClickListener() {
+        btnUpload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent cInt = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                startActivityForResult(cInt,Image_Capture_Code);
+                switch (v.getId()){
+                    case R.id.button:
+                        Intent cInt = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                        startActivityForResult(cInt,Image_Capture_Code);
+                        break;
+                    case R.id.button2:
+                        String test = "A big ole test";
+                        String type = "submit";
+
+                        BackendService backendService = new BackendService(CameraActivity.this);
+                        backendService.execute(type, test);
+                        break;
+                }
+
+
             }
         });
+
     }
 
-    public void OnSubmit(){
-        String test = "test";
-        String type = "submit";
 
-        BackendService backendService = new BackendService(this);
-        backendService.execute(type, test);
-    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
