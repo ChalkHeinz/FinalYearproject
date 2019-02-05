@@ -35,20 +35,22 @@ public class CameraActivity extends AppCompatActivity  {
         btnUpload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                switch (v.getId()){
-                    case R.id.button:
-                        Intent cInt = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                        startActivityForResult(cInt,Image_Capture_Code);
-                        break;
-                    case R.id.button2:
+
+
                         String test = "A big ole test";
                         String type = "submit";
 
                         BackendService backendService = new BackendService(CameraActivity.this);
                         backendService.execute(type, test);
-                        break;
                 }
+        });
 
+        btnCapture.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+
+                        Intent cInt = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                        startActivityForResult(cInt,Image_Capture_Code);
 
             }
         });
