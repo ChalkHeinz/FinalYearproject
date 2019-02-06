@@ -33,6 +33,7 @@ public class BackendService extends AsyncTask<String, Void, String> {
         if(type.equals("submit")){
             try {
                 String data = params[1];
+                String imageData = params[2];
 
                 URL url = new URL(submit_url);
                 HttpURLConnection httpURLConnection = (HttpURLConnection)url.openConnection();
@@ -43,7 +44,8 @@ public class BackendService extends AsyncTask<String, Void, String> {
                 BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream, "UTF-8"));
 
                 //Encoded the data here
-                String post_data = URLEncoder.encode("test", "UTF-8")+ "=" + URLEncoder.encode(data, "UTF-8");
+                String post_data = URLEncoder.encode("test", "UTF-8")+ "=" + URLEncoder.encode(data, "UTF-8")
+                        + "&" + URLEncoder.encode("image", "UTF-8")+ "=" + URLEncoder.encode(imageData, "UTF-8");
 
                 bufferedWriter.write(post_data);
                 bufferedWriter.flush();
