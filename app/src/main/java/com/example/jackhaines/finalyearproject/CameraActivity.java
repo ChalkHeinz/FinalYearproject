@@ -23,7 +23,7 @@ import java.util.Date;
 
 public class CameraActivity extends AppCompatActivity  {
 
-    private Button btnCapture, btnUpload;
+    private Button btnCapture, btnUpload, btnMap;
     private ImageView imgCapture;
     static final int Image_Capture_Code = 1;
     String mCurrentPhotoPath;
@@ -37,6 +37,7 @@ public class CameraActivity extends AppCompatActivity  {
         //Assigns buttons to Button classes
         btnCapture = findViewById(R.id.button);
         btnUpload = findViewById(R.id.button2);
+        btnMap = findViewById(R.id.button3);
         imgCapture = findViewById(R.id.imageView);
 
 
@@ -52,6 +53,16 @@ public class CameraActivity extends AppCompatActivity  {
                 backendService.execute(type, test, encodedImage);
             }
         });
+
+        btnMap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Start new activity
+                Intent mapIntent = new Intent(CameraActivity.this, MapActivity.class);
+                CameraActivity.this.startActivity(mapIntent);
+            }
+        });
+
         btnCapture.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
