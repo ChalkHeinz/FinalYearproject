@@ -58,7 +58,7 @@ public class CameraActivity extends AppCompatActivity  {
             @Override
             public void onClick(View v) {
                 //Start new activity
-                Intent mapIntent = new Intent(CameraActivity.this, MapActivity.class);
+                Intent mapIntent = new Intent(CameraActivity.this, SearchActivity.class);
                 CameraActivity.this.startActivity(mapIntent);
             }
         });
