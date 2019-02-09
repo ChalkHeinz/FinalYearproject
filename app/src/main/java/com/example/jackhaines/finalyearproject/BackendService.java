@@ -38,8 +38,12 @@ public class BackendService extends AsyncTask<String, Void, String> {
         String submit_url = "http://35.246.45.206/submit.php";
         if(type.equals("submit")){
             try {
-                String data = params[1];
-                String imageData = params[2];
+                String googleEmail = params[1];
+                String lat = params[2];
+                String lon = params[3];
+                String species = params[4];
+                String image = params[5];
+
 
                 URL url = new URL(submit_url);
                 HttpURLConnection httpURLConnection = (HttpURLConnection)url.openConnection();
@@ -50,8 +54,11 @@ public class BackendService extends AsyncTask<String, Void, String> {
                 BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream, "UTF-8"));
 
                 //Encoded the data here
-                String post_data = URLEncoder.encode("test", "UTF-8")+ "=" + URLEncoder.encode(data, "UTF-8")
-                        + "&" + URLEncoder.encode("image", "UTF-8")+ "=" + URLEncoder.encode(imageData, "UTF-8");
+                String post_data = URLEncoder.encode("GoogleEmail", "UTF-8")+ "=" + URLEncoder.encode(googleEmail, "UTF-8")
+                        + "&" + URLEncoder.encode("Lat", "UTF-8")+ "=" + URLEncoder.encode(lat, "UTF-8")
+                        + "&" + URLEncoder.encode("Lon", "UTF-8")+ "=" + URLEncoder.encode(lon, "UTF-8")
+                        + "&" + URLEncoder.encode("Species", "UTF-8")+ "=" + URLEncoder.encode(species, "UTF-8")
+                        + "&" + URLEncoder.encode("Image", "UTF-8")+ "=" + URLEncoder.encode(image, "UTF-8");
 
                 bufferedWriter.write(post_data);
                 bufferedWriter.flush();
@@ -125,7 +132,7 @@ public class BackendService extends AsyncTask<String, Void, String> {
     protected void onPostExecute(String string) {
         alertDialog.setMessage(string);
         alertDialog.show();
-        SearchActivity.test = string;
+        SearchActivity.JSONString = string;
     }
 
     @Override

@@ -14,7 +14,9 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
 
     static public ListView listView;
 
-    static public String test;
+    static public String JSONString;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,7 +36,15 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.button4:
-                String bam = test;
+                JSONObject reader;
+
+            {
+                try {
+                    reader = new JSONObject(JSONString);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
                 break;
             // ...
         }
