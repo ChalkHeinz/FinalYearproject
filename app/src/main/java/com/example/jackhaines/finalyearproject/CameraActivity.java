@@ -44,6 +44,9 @@ public class CameraActivity extends AppCompatActivity {
     String mCurrentPhotoPath;
     File photoFile;
 
+    static double lat;
+    static double lon;
+
     LocationManager locationManager;
     private static final int REQUEST_LOCATION = 1;
     String lattitude,longitude;
@@ -84,15 +87,17 @@ public class CameraActivity extends AppCompatActivity {
 
                 String type = "submit";
                 String googleEmail = acct.getEmail();
-                String lat = "1.0";
-                String lon = "1.0";
+
+                String latString = Double.toString(lat);
+                String lonString = Double.toString(lon);
+
                 String species = "Bird species";
                 String encodedImage = BitmapToEncodedString(FileToBitmap(photoFile));
 
 
                 BackendService backendService = new BackendService(CameraActivity.this);
                 //First var is type and the following is data
-                backendService.execute(type, googleEmail, lat, lon, species, encodedImage);
+                backendService.execute(type, googleEmail, latString, lonString, species, encodedImage);
             }
         });
 
@@ -187,19 +192,17 @@ public class CameraActivity extends AppCompatActivity {
 
         } else {
 
-            Location location1 = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+            Location location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
 
-            if (location1 != null) {
-                double latti = location1.getLatitude();
-                double longi = location1.getLongitude();
-                lattitude = String.valueOf(latti);
-                longitude = String.valueOf(longi);
+            if (location != null) {
+                lat = location.getLatitude();
+                lon = location.getLongitude();
 
 
             }
             else{
 
-                Toast.makeText(this,"Unable to Trace your location",Toast.LENGTH_SHORT).show();
+                Toast.makeText(this,"Your location is unknown",Toast.LENGTH_SHORT).show();
 
             }
         }
