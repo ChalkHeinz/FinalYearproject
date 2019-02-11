@@ -22,4 +22,5 @@
     <string name="sign_out">Sign Out</string>
     <string name="disconnect">Disconnect</string>
     <string name="refresh_token">Get Fresh Token</string>
+    <string name="title_activity_map">Map</string>
 </resources>
