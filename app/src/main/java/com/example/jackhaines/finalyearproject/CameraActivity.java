@@ -63,7 +63,7 @@ public class CameraActivity extends AppCompatActivity implements AdapterView.OnI
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_camera);
 
-        String[] species = {"Grebes and divers", "Seabirds", "Waterfowl", "Herons, egrets and spoonbill", "Birds of prey", "Gamebirds", "Wading birds", "Pigeons and doves", "Woodpeckers, cuckoo, kingfisher and waxwing", "Swallows, swift, martins and nightjar", "Parakeet", "Larks, sparrows, wagtails and dunnock", "Thrushes, chats, flycatchers, starling, dipper and wren", "Tits, crests", "Crows and shrikes", "Finches and buntings"};
+        String[] species = {"Grebes and Divers", "Seabirds", "Waterfowl", "Herons, Egrets and Spoonbill", "Birds of Prey", "Gamebirds", "Wading Birds", "Pigeons and Doves", "Woodpeckers, Cuckoo, Kingfisher and Waxwing", "Swallows, Swift, Martins and Nightjar", "Parakeet", "Larks, Sparrows, Wagtails and Dunnock", "Thrushes, Chats, Flycatchers, Starling, Dipper and Wren", "Tits, Crests and Warblers", "Crows and shrikes", "Finches and Btuntings"};
 
         //Assigns buttons to Button classes
         btnCapture = findViewById(R.id.capture);
@@ -74,16 +74,15 @@ public class CameraActivity extends AppCompatActivity implements AdapterView.OnI
         ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_LOCATION);
 
 
-        Spinner spinner = findViewById(R.id.spinner2);
+        spinner = findViewById(R.id.spinner2);
         spinner.setOnItemSelectedListener(this);
 
-        arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, species);
+        arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, species);
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         spinner.setAdapter(arrayAdapter);
 
         spinner2 =  findViewById(R.id.spinner);
-
         spinner2.setOnItemSelectedListener(this);
 
         arrayBirdAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item);
@@ -112,7 +111,7 @@ public class CameraActivity extends AppCompatActivity implements AdapterView.OnI
                 String latString = Double.toString(lat);
                 String lonString = Double.toString(lon);
 
-                String species = "Bird species";
+                String species = spinner2.getSelectedItem().toString();
                 String encodedImage = BitmapToEncodedString(FileToBitmap(photoFile));
 
 
@@ -222,41 +221,56 @@ public class CameraActivity extends AppCompatActivity implements AdapterView.OnI
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        int species = 0;
-        species = spinner.getSelectedItemPosition() + 1;
+        int species = spinner.getSelectedItemPosition();
+        arrayBirdAdapter.clear();
         switch (species){
             case 0:
+                arrayBirdAdapter = spinnerContentClass.GrebalsAndDivers(arrayBirdAdapter);
                 break;
             case 1:
+                arrayBirdAdapter = spinnerContentClass.Seabirds(arrayBirdAdapter);
                 break;
             case 2:
+                arrayBirdAdapter = spinnerContentClass.Waterfowl(arrayBirdAdapter);
                 break;
             case 3:
+                arrayBirdAdapter = spinnerContentClass.HeronsEgretsAndSpoonbill(arrayBirdAdapter);
                 break;
             case 4:
+                arrayBirdAdapter = spinnerContentClass.BirdsOfPrey(arrayBirdAdapter);
                 break;
             case 5:
+                arrayBirdAdapter = spinnerContentClass.GameBirds(arrayBirdAdapter);
                 break;
             case 6:
+                arrayBirdAdapter = spinnerContentClass.WadingBirds(arrayBirdAdapter);
                 break;
             case 7:
-                arrayBirdAdapter = spinnerContentClass.PigeonsAndDoves();
+                arrayBirdAdapter = spinnerContentClass.PigeonsAndDoves(arrayBirdAdapter);
                 break;
             case 8:
+                arrayBirdAdapter = spinnerContentClass.WoodpeckersCuckooKingfisherWaxwing(arrayBirdAdapter);
                 break;
             case 9:
+                arrayBirdAdapter = spinnerContentClass.SwallowsSwiftMartinsAndNightjar(arrayBirdAdapter);
                 break;
             case 10:
+                arrayBirdAdapter = spinnerContentClass.Parakeet(arrayBirdAdapter);
                 break;
             case 11:
+                arrayBirdAdapter = spinnerContentClass.LarksSparrowsWagtailsAndDunnock(arrayBirdAdapter);
                 break;
             case 12:
+                arrayBirdAdapter = spinnerContentClass.ThrushesChatFlycatchersStarlingDipperAndWren(arrayBirdAdapter);
                 break;
             case 13:
+                arrayBirdAdapter = spinnerContentClass.TitsCrestsAndWarblers(arrayBirdAdapter);
                 break;
             case 14:
+                arrayBirdAdapter = spinnerContentClass.CrowsAndShrikes(arrayBirdAdapter);
                 break;
             case 15:
+                arrayBirdAdapter = spinnerContentClass.FinchesAndBuntings(arrayBirdAdapter);
                 break;
         }
         arrayBirdAdapter.notifyDataSetChanged();
