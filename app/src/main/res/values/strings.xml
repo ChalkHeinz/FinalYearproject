@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">Final Year project</string>
 
+    <!--Text-view -->
+    <string name="welcome">"Birdo, a bird tracking app." </string>
 
     <!-- Sign-in status messages -->
     <string name="signed_in_fmt">Signed in as: %s</string>
@@ -23,4 +25,6 @@
     <string name="disconnect">Disconnect</string>
     <string name="refresh_token">Get Fresh Token</string>
     <string name="title_activity_map">Map</string>
+
+    <string name="capture">Capture</string>
 </resources>

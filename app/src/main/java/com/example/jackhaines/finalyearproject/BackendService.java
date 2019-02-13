@@ -130,7 +130,7 @@ public class BackendService extends AsyncTask<String, Void, String> {
 
     @Override
     protected void onPostExecute(String string) {
-        alertDialog.setMessage("Got the JSON");
+        alertDialog.setMessage("Complete");
         alertDialog.show();
         SearchActivity.JSONString = string;
     }

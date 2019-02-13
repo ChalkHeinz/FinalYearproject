@@ -61,8 +61,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.sign_in_button:
                 signIn();
                 break;
-            // ...
-        }
+       }
     }
 
     private void signIn() {
