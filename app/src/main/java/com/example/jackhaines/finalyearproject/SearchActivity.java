@@ -22,8 +22,7 @@ import static java.lang.System.in;
 public class SearchActivity extends AppCompatActivity implements View.OnClickListener{
 
     public TextView textView, textView2;
-    public String lat;
-    public String lon;
+
 
     public static String JSONString;
 
@@ -36,15 +35,11 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
         textView = (TextView) findViewById(R.id.textView);
         textView2 = (TextView) findViewById(R.id.textView2);
 
-
         findViewById(R.id.button4).setOnClickListener(this);
         findViewById(R.id.button5).setOnClickListener(this);
 
-
-        BackendService backendService = new BackendService(SearchActivity.this);
-        backendService.execute("get");
-
-
+        GetService GetService = new GetService(SearchActivity.this);
+        GetService.execute("get");
     }
 
     @Override
@@ -55,13 +50,15 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
                 try {
                     JSONArray array = new JSONArray(JSONString);
 
-                    JSONObject obj = array.getJSONObject(0);
+                    for (int i = 0; i < array.length(); i++){
+                        JSONObject obj = array.getJSONObject(i);
 
-                    lat = obj.getString("Lat");
-                    lon = obj.getString("Lon");
-                    textView.setText(lat);
-                    textView2.setText(lon);
-
+                        GetBirdInfoData.lat.add(obj.getString("Lat"));
+                        GetBirdInfoData.lon.add(obj.getString("Lon"));
+                        GetBirdInfoData.image.add(obj.getString("Image"));
+                        GetBirdInfoData.species.add(obj.getString("Species"));
+                        GetBirdInfoData.time.add(obj.getString("time"));
+                    }
 
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -69,8 +66,6 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
                 break;
             case R.id.button5:
                 Intent mapIntent = new Intent(SearchActivity.this, MapActivity.class);
-                mapIntent.putExtra("Lat", lat);
-                mapIntent.putExtra("Lon", lon);
                 SearchActivity.this.startActivity(mapIntent);
                 break;
             // ...
