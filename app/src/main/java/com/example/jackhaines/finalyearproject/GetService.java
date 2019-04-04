@@ -18,7 +18,6 @@ import java.net.URLEncoder;
 
 public class GetService extends AsyncTask<String, Void, String> {
     Context context;
-    AlertDialog alertDialog;
 
     GetService(Context ctx){
         context = ctx;
@@ -59,14 +58,11 @@ public class GetService extends AsyncTask<String, Void, String> {
     }
 @Override
 protected void onPreExecute() {
-    alertDialog = new AlertDialog.Builder(context).create();
 
 }
 
 @Override
 protected void onPostExecute(String string) {
-    alertDialog.setMessage("Complete");
-    alertDialog.show();
     SearchActivity.JSONString = string;
 }
 

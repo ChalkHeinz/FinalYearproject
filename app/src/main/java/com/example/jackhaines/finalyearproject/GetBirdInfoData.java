@@ -1,5 +1,7 @@
 package com.example.jackhaines.finalyearproject;
 
+import android.graphics.Bitmap;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,4 +11,5 @@ public class GetBirdInfoData {
     public static List<String> time = new ArrayList<>();
     public static List<String> image = new ArrayList<>();
     public static List<String> species = new ArrayList<>();
+    public static Bitmap decodedByte;
 }
