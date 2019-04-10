@@ -98,12 +98,10 @@ public class CameraActivity extends AppCompatActivity implements AdapterView.OnI
             public void onClick(View v) {
                 GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(CameraActivity.this);
 
-
                 locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
                 if (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
                     getLocation();
                 }
-
 
                 String type = "submit";
                 String googleEmail = acct.getEmail();
@@ -113,7 +111,6 @@ public class CameraActivity extends AppCompatActivity implements AdapterView.OnI
 
                 String species = spinner2.getSelectedItem().toString();
                 String encodedImage = BitmapToEncodedString(FileToBitmap(photoFile));
-
 
                 BackendService backendService = new BackendService(CameraActivity.this);
                 //First string is type and the following is data
@@ -281,3 +278,6 @@ public class CameraActivity extends AppCompatActivity implements AdapterView.OnI
 
     }
 }
+
+//This class is largely based on this guide
+//https://developer.android.com/training/camera

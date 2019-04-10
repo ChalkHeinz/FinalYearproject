@@ -118,7 +118,7 @@ public class BackendService extends AsyncTask<String, Void, String> {
     @Override
     protected void onPreExecute() {
         alertDialog = new AlertDialog.Builder(context).create();
-        alertDialog.setTitle("Works?");
+        alertDialog.setTitle("Result");
 
     }
 
