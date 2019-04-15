@@ -3,12 +3,6 @@ package com.example.jackhaines.finalyearproject;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.os.AsyncTask;
-import android.widget.ArrayAdapter;
-import android.widget.Toast;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -124,13 +118,13 @@ public class BackendService extends AsyncTask<String, Void, String> {
     @Override
     protected void onPreExecute() {
         alertDialog = new AlertDialog.Builder(context).create();
-        alertDialog.setTitle("Works?");
+        alertDialog.setTitle("Result");
 
     }
 
     @Override
     protected void onPostExecute(String string) {
-        alertDialog.setMessage("Got the JSON");
+        alertDialog.setMessage("Complete");
         alertDialog.show();
         SearchActivity.JSONString = string;
     }
